@@ -4,9 +4,7 @@ import com.thoughtworks.capacity.gtb.mvc.Service.UserService;
 import com.thoughtworks.capacity.gtb.mvc.domain.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
@@ -23,5 +21,11 @@ public class UserController {
     public ResponseEntity registerUser(@RequestBody @Valid User user) {
         userService.registerUser(user);
         return ResponseEntity.ok().body("注册成功");
+    }
+
+    @GetMapping("/login")
+    public ResponseEntity loginUser(@RequestParam String username, @RequestParam String password) {
+        User user = userService.loginUser(username, password);
+        return ResponseEntity.ok().body(user);
     }
 }

@@ -14,6 +14,7 @@ import javax.validation.constraints.Pattern;
 @AllArgsConstructor
 @NoArgsConstructor
 public class User {
+    private String id;
     @NotBlank(message = "用户名不能为空")
     @Pattern(regexp = "[A-Za-z0-9_]{2,11}", message = "用户名不合法")
     private String username;
