@@ -13,19 +13,19 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<ErrorResult> errorHandler(MethodArgumentNotValidException ex) {
-        ErrorResult errorResult = new ErrorResult(ex.getBindingResult().getFieldError().getDefaultMessage());
+        ErrorResult errorResult = ErrorResult.builder().message(ex.getBindingResult().getFieldError().getDefaultMessage()).errorCode("400").build();
         return ResponseEntity.badRequest().body(errorResult);
     }
 
     @ExceptionHandler(UserNameIsSameException.class)
     public ResponseEntity<ErrorResult> errorHandler(UserNameIsSameException ex) {
-        ErrorResult errorResult = new ErrorResult(ex.getMessage());
+        ErrorResult errorResult = ErrorResult.builder().message(ex.getMessage()).errorCode("400").build();
         return ResponseEntity.badRequest().body(errorResult);
     }
 
     @ExceptionHandler(UserNotFoundException.class)
     public ResponseEntity<ErrorResult> errorHandler(UserNotFoundException ex) {
-        ErrorResult errorResult = new ErrorResult(ex.getMessage());
+        ErrorResult errorResult = ErrorResult.builder().message(ex.getMessage()).errorCode("400").build();
         return ResponseEntity.badRequest().body(errorResult);
     }
 }
