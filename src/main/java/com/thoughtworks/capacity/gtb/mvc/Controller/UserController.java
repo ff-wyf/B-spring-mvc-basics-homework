@@ -4,7 +4,11 @@ import com.thoughtworks.capacity.gtb.mvc.Service.UserService;
 import com.thoughtworks.capacity.gtb.mvc.domain.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+<<<<<<< HEAD
 import org.springframework.web.bind.annotation.GetMapping;
+=======
+import org.springframework.web.bind.annotation.PostMapping;
+>>>>>>> 完成注册接口以及错误信息返回
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -19,7 +23,7 @@ public class UserController {
         this.userService = userService;
     }
 
-    @GetMapping("/register")
+    @PostMapping("/register")
     public ResponseEntity registerUser(@RequestBody @Valid User user) {
         userService.registerUser(user);
         return ResponseEntity.ok().body("注册成功");
